@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  </head>
+  <body>
+    <h1>Thank You For Your Order, Valued Customer </h1>
+    <p>
+      Please ensure the details of your order are accurate:
+    </p>
+      <% @line_items.each do |item| %>
+        <p> Product Name: <%= item.product.name %> </p>
+        <p> Quantity: <%= item.quantity %> </p>
+        <p> Item Price: <%= number_to_currency((item.item_price_cents)/100) %> </p>
+        <p> Total: <%= number_to_currency((item.total_price_cents)/100) %> </p>
+      <% end %>
+    <p>
+      Your final total is: <%= number_to_currency(@line_items.sum(:total_price_cents)/100) %>
+</p>
+    <p>Thanks for ordering and have a great day!</p>
+  </body>
+</html>

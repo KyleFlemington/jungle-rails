@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @product = Product.find(params[:id])
     @line_items = @order.line_items
   end
 
@@ -54,9 +53,14 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
+     if order.save
+        user = User.find_by()
+        UserMailer.order_success_email(order.line_items, user).deliver_now
     order
+      end
   end
+
+
 
   # returns total in cents not dollars (stripe uses cents as well)
   def cart_total
