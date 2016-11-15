@@ -30,11 +30,26 @@
       <div class="col-sm-8">
         <dl class="dl-horizontal">
          <dt>Reviews</dt>
-        <% @product.reviews.each do |review| %>
-          <dd><%= review.user.name %>: </dd>
-          <dd><%= review.description %></dd>
           <br></br>
+          <%= form_for [@product, @review] do |review| %>
+            <dd><%= review.label :description %></dd>
+            <dd><%= review.text_area :description %></dd>
+            <dd><%= review.select :rating, [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]] %></dd>
+            <dd><%= review.submit "Submit Review" %></dd>
+          <% end %>
+          <br></br>
+   
+        <% @product.reviews.reverse.each do |review| %>
+          <strong><dd><%= review.user.name %>: </dd></strong>
+          <dd><%= review.description %></dd>
+          <dd><%= review.rating %>/5 </dd>
+          <dd><%= review.created_at %></dd>
+          <br></br>
+          <div class="delrev">
+          <%= link_to fa_icon('trash'), [@product, @review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
         <% end %>
+        </div>
+     
         </dl>
       </div>
 
