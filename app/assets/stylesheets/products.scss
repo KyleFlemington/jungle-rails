@@ -62,9 +62,12 @@ main section.categories-show {
         font-size: 0.8em;
       }
 
+      
+
       #login {
         float: left;
       }
+
 
       &:hover {
 
@@ -88,4 +91,32 @@ main section.products-show {
   }
 }
 
+h6 {
+  padding-left: 75%;
+}
 
+h5 {
+  float: left;
+  margin-bottom: 5px;
+  margin-left: 5px; 
+}
+
+h4 {
+  margin-left: 5px;
+  margin-bottom: 5px;
+}
+
+p {
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+input {
+  margin-top: 10px;
+}
+
+div#delrev {
+  float: right;
+  border: 2px solid black;
+} 

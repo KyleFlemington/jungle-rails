@@ -31,6 +31,8 @@
         <dl class="dl-horizontal">
          <dt>Reviews</dt>
           <br></br>
+
+
           <%= form_for [@product, @review] do |review| %>
             <dd><%= review.label :description %></dd>
             <dd><%= review.text_area :description %></dd>
@@ -38,17 +40,27 @@
             <dd><%= review.submit "Submit Review" %></dd>
           <% end %>
           <br></br>
-   
+
+
         <% @product.reviews.reverse.each do |review| %>
-          <strong><dd><%= review.user.name %>: </dd></strong>
-          <dd><%= review.description %></dd>
-          <dd><%= review.rating %>/5 </dd>
-          <dd><%= review.created_at %></dd>
-          <br></br>
-          <div class="delrev">
-          <%= link_to fa_icon('trash'), [@product, @review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
+        <div id="revs" style="border: 2px black solid; border-radius: 5px;">
+          <strong><h4 id="username"><%= review.user.name %>: </h4></strong>
+          <p id="rev"><%= review.description %></p>
+          <h5><%= review.rating %>/5 </h5>
+          <h6><%= review.created_at %></h6>
+
+
+            <div id="delrev">
+              <% if review.user.id == current_user.id  %>
+               <%= link_to fa_icon('trash'), [@product, @review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
+            </div>
+
+
         </div>
+        <br></br>
+        <% end %>
+        
      
         </dl>
       </div>
