@@ -54,7 +54,7 @@ class OrdersController < ApplicationController
       end
     end
      if order.save
-        user = User.find_by()
+        user = params[:stripeEmail]
         UserMailer.order_success_email(order.line_items, user).deliver_now
     order
       end
